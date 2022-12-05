@@ -6,25 +6,11 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 08:56:08 by kpuwar            #+#    #+#             */
-/*   Updated: 2022/11/22 16:29:26 by kpuwar           ###   ########.fr       */
+/*   Updated: 2022/12/05 03:31:29 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	count_args(const char *str)
-{
-	int	count;
-
-	count = 0;
-	while (*str)
-	{
-		if (*str == '%')
-			count++;
-		str++;
-	}
-	return (count);
-}
 
 size_t	ft_strlen(const char *s)
 {
@@ -47,67 +33,82 @@ void	*ft_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-int	ft_putchar_fd(char c, int fd)
+int	ft_putchar(char c)
 {
-	write(fd, &c, sizeof(char));
-	return (1);
+	return (write(1, &c, 1));
 }
 
-int	ft_putstr_fd(char *s, int fd)
+int	ft_putstr(char *s)
 {
-	return (write(fd, s, sizeof(char) * ft_strlen(s)));
+	return (write(1, s, ft_strlen(s)));
 }
 
-int	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr(long int n)
 {
 	char	arr[10];
-	long	ln;
-	int		len;
+	short	itr;
+	short	len;
 
-	ln = n;
-	n = 0;
-	if (ln == 0)
-		return (write(fd, "0", 1));
+	if (n == 0)
+		return (write(1, "0", 1));
+	len = 0;
+	itr = 0;
 	ft_memset(arr, '0', 10);
-	if (ln < 0)
+	if (n < 0)
 	{
-		write(fd, "-", 1);
-		ln *= -1;
+		len += write(1, "-", 1);
+		n *= -1;
 	}
-	while (ln > 0)
+	while (n > 0)
 	{
-		arr[n++] = (char)((ln % 10) + '0');
-		ln /= 10;
+		arr[itr++] = (char)((n % 10) + '0');
+		n /= 10;
 	}
-	len = n;
-	while (n--)
-		write(fd, &arr[n], 1);
+	while (itr--)
+		len += write(1, &arr[itr], 1);
 	return (len);
 }
 
-char	*tohex(int n)
+int	tohex(long long int n, char c)
 {
-	//pending
-}
+	char	arr[20];
+	short	i;
+	short	temp;
 
-//toupper fn
+	ft_memset(arr, '0', 20);
+	i = 0;
+	while (n)
+	{
+		temp = n % 16;
+		if (temp > 9)
+			arr[i++] = ((temp - 10) + c);
+		else
+			arr[i++] = (temp + '0');
+		n /= 16;
+	}
+	temp = 0;
+	while (i--)
+		temp += write(1, &arr[i], 1);
+	return (temp);
+}
 
 int	print_var(char c, va_list valist)
 {
 	if (c == 'c')
-		return (ft_putchar_fd(va_arg(valist, int), 1));
+		return (ft_putchar(va_arg(valist, int)));
 	else if (c == 's')
-		return (ft_putstr_fd(va_arg(valist, char *), 1));
-	else if (c == 'p')	//pending
-		return (ft_putstr_fd(va_arg(valist, char *), 1));
+		return (ft_putstr(va_arg(valist, char *)));
+	else if (c == 'p')
+		return (write(1, "0x", 2) + \
+		tohex((long long int) va_arg(valist, void *), 'a'));
 	else if (c == 'd' || c == 'i')
-		return (ft_putnbr_fd(va_arg(valist, int), 1));
-	else if (c == 'u') //conversion
-		return (ft_putnbr_fd(va_arg(valist, unsigned int), 1));
-	else if (c == 'x')	//num to hex pending
-		return (ft_putnbr_fd(va_arg(valist, int), 1));
-	else if (c == 'X')	//cap hex pending
-		return (ft_putnbr_fd(va_arg(valist, int), 1));
+		return (ft_putnbr(va_arg(valist, int)));
+	else if (c == 'u')
+		return (ft_putnbr(va_arg(valist, unsigned int)));
+	else if (c == 'x')
+		return (tohex(va_arg(valist, int), 'a'));
+	else if (c == 'X')
+		return (tohex(va_arg(valist, int), 'A'));
 	else
-		return (ft_putchar_fd('%', 1));
+		return (ft_putchar('%'));
 }
