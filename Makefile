@@ -6,13 +6,13 @@
 #    By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 03:43:02 by kpuwar            #+#    #+#              #
-#    Updated: 2022/12/05 03:53:18 by kpuwar           ###   ########.fr        #
+#    Updated: 2022/12/05 05:54:28 by kpuwar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS = ft_printf.c	ft_printf_utils.c
+SRCS = ft_printf.c ft_libft.c ft_printf_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
