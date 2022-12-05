@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 08:56:08 by kpuwar            #+#    #+#             */
-/*   Updated: 2022/12/05 05:50:03 by kpuwar           ###   ########.fr       */
+/*   Updated: 2022/12/05 06:20:58 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_putnbr(long int n)
 	return (len);
 }
 
-int	tohex(unsigned long int n, char c)
+int	ft_tohex(unsigned long int n, char c)
 {
 	char	arr[16];
 	short	i;
@@ -64,7 +64,7 @@ int	tohex(unsigned long int n, char c)
 	return (temp);
 }
 
-int	print_var(char c, va_list valist)
+int	ft_print_var(char c, va_list valist)
 {
 	if (c == 'c')
 		return (ft_putchar(va_arg(valist, int)));
@@ -72,15 +72,15 @@ int	print_var(char c, va_list valist)
 		return (ft_putstr(va_arg(valist, char *)));
 	else if (c == 'p')
 		return (ft_putstr("0x") + \
-		tohex((unsigned long int) va_arg(valist, unsigned long int), 'a'));
+		ft_tohex((unsigned long int) va_arg(valist, void *), 'a'));
 	else if (c == 'd' || c == 'i')
 		return (ft_putnbr(va_arg(valist, int)));
 	else if (c == 'u')
 		return (ft_putnbr(va_arg(valist, unsigned int)));
 	else if (c == 'x')
-		return (tohex(va_arg(valist, unsigned int), 'a'));
+		return (ft_tohex(va_arg(valist, unsigned int), 'a'));
 	else if (c == 'X')
-		return (tohex(va_arg(valist, unsigned int), 'A'));
+		return (ft_tohex(va_arg(valist, unsigned int), 'A'));
 	else
 		return (ft_putchar('%'));
 }

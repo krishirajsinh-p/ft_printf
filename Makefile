@@ -6,7 +6,7 @@
 #    By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 03:43:02 by kpuwar            #+#    #+#              #
-#    Updated: 2022/12/05 05:54:28 by kpuwar           ###   ########.fr        #
+#    Updated: 2022/12/05 06:23:53 by kpuwar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJS = $(SRCS:.c=.o)
 
 CC = cc
 
-CC_FLAGS = -Wall -Werror -Wextra
+CC_FLAGS = -Wall -Wextra -Werror
 
 LIB = ar rc
 

@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 14:12:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2022/12/05 03:55:31 by kpuwar           ###   ########.fr       */
+/*   Updated: 2022/12/05 06:20:18 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_printf(const char *args, ...)
 	while (*args)
 	{
 		if (*args == '%')
-			len += print_var(*(++args), valist);
+			len += ft_print_var(*(++args), valist);
 		else
 			len += ft_putchar(*args);
 		args++;
