@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 08:56:08 by kpuwar            #+#    #+#             */
-/*   Updated: 2022/12/05 06:20:58 by kpuwar           ###   ########.fr       */
+/*   Updated: 2022/12/06 20:45:02 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_putnbr(long int n)
 
 	if (n == 0)
 		return (ft_putchar('0'));
-	ft_memset(arr, '0', 10);
+	ft_memset(arr, '\0', 10);
 	len = 0;
 	i = 0;
 	if (n < 0)
@@ -47,7 +47,7 @@ int	ft_tohex(unsigned long int n, char c)
 
 	if (n == 0)
 		return (ft_putchar('0'));
-	ft_memset(arr, '0', 16);
+	ft_memset(arr, '\0', 16);
 	i = 0;
 	while (n)
 	{
