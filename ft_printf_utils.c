@@ -6,13 +6,23 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 08:56:08 by kpuwar            #+#    #+#             */
-/*   Updated: 2022/12/06 20:45:02 by kpuwar           ###   ########.fr       */
+/*   Updated: 2022/12/06 21:21:56 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr(long int n)
+static void	*ft_memset(void *b, int c, size_t len)
+{
+	unsigned char	*ptr;
+
+	ptr = b;
+	while (len-- > 0)
+		*ptr++ = c;
+	return (b);
+}
+
+static int	ft_putnbr(long int n)
 {
 	char	arr[10];
 	short	i;
@@ -39,7 +49,7 @@ int	ft_putnbr(long int n)
 	return (len);
 }
 
-int	ft_tohex(unsigned long int n, char c)
+static int	ft_tohex(unsigned long int n, char c)
 {
 	char	arr[16];
 	short	i;

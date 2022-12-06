@@ -6,13 +6,13 @@
 #    By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 03:43:02 by kpuwar            #+#    #+#              #
-#    Updated: 2022/12/05 06:23:53 by kpuwar           ###   ########.fr        #
+#    Updated: 2022/12/06 21:35:32 by kpuwar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS = ft_printf.c ft_libft.c ft_printf_utils.c
+SRCS = ft_printf.c ft_print_to_stdout.c ft_printf_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -26,7 +26,7 @@ LIB = ar rc
 	$(CC) $(CC_FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(LIB) $(NAME) $(OBJS)
+	$(LIB) $@ $^
 
 all: $(NAME)
 
