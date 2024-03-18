@@ -32,3 +32,35 @@ malloc(), free(), write(), va_start(), va_arg(), va_copy(), va_end()
 > - `%%` print a percent sign.</i>
 
 ---
+
+## 🛠️ Usage
+
+### Requirements
+
+The library is written in C language and thus needs the **`gcc` compiler** and some standard **C libraries** to run.
+
+### Instructions
+
+**1. Compiling the library**
+
+To compile the library run below given command in your terminal. After successful compilation you will find <b>libftprintf.a</b> file in root directory of the project.
+
+```shell
+$ cd path/to/ft_printf && make
+```
+
+**2. Using it in your code**
+
+To use the ft_printf function in your code, simply include its header:
+
+```C
+#include "ft_printf.h"
+```
+
+**3. Compile your code**
+
+To compile your code, add <b>libftprintf.a</b> library to compilation command:
+
+```shell
+$ gcc file1.c file2.c ... path/to/ft_printf/libftprintf.a
+```
