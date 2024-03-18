@@ -6,36 +6,42 @@
 #    By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 03:43:02 by kpuwar            #+#    #+#              #
-#    Updated: 2022/12/22 06:23:54 by kpuwar           ###   ########.fr        #
+#    Updated: 2024/03/18 23:49:57 by kpuwar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS = ft_printf.c ft_printf_utils.c
+SRCDIR = src
+INCDIR = includes
+OBJDIR = obj
 
-OBJS = $(SRCS:.c=.o)
+SRCFILES := $(shell find $(SRCDIR) -type f -name '*.c')
+OBJFILES := $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(SRCFILES:.c=.o))
 
-CC = cc
-
-CC_FLAGS = -Wall -Wextra -Werror
-
-LIB = ar rc
-
-%.o: %.c ft_printf.h
-	$(CC) $(CC_FLAGS) -c $< -o $@
-
-$(NAME): $(OBJS)
-	$(LIB) $@ $^
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+AR = ar
+ARFLAGS = rcs
 
 all: $(NAME)
 
+$(NAME): $(OBJFILES)
+	$(AR) $(ARFLAGS) $@ $^
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) -I$(INCDIR) -c $< -o $@
+
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJDIR)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all re clean fclean re
+.PHONY: all clean fclean re
