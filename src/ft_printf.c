@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 14:12:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2024/03/19 00:32:42 by kpuwar           ###   ########.fr       */
+/*   Updated: 2024/03/19 13:07:00 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,13 @@ static int ft_print_var(char c, va_list valist)
 	else if (c == 's')
 		return (ft_putstr(va_arg(valist, char *))); // Print a string
 	else if (c == 'p')
-		return (ft_putstr("0x") + ft_tohex((unsigned long int)va_arg(valist, void *), 'a')); // Print a pointer in hexadecimal format with '0x' prefix
+	{
+		unsigned long int num = (unsigned long int)va_arg(valist, void *);
+		if (num == 0)
+			return (ft_putstr("(nil)")); // Prints (nil) if pointer is pointing towards NULL
+		else
+			return (ft_putstr("0x") + ft_tohex(num, 'a')); // Print a pointer in hexadecimal format with '0x' prefix
+	}
 	else if (c == 'd' || c == 'i')
 		return (ft_putnbr(va_arg(valist, int))); // Print a decimal integer
 	else if (c == 'u')
