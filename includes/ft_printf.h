@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 14:17:06 by kpuwar            #+#    #+#             */
-/*   Updated: 2024/04/08 01:08:23 by kpuwar           ###   ########.fr       */
+/*   Updated: 2024/04/08 01:53:03 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,6 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-/**
- * @brief Outputs an integer to the specified file descriptor.
- *
- * @param n The integer to output.
- * @param fd The file descriptor.
- */
 int ft_printf(const char *args, ...);
 
 /**
