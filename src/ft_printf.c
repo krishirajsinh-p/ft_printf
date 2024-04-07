@@ -6,74 +6,18 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 14:12:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2024/03/19 13:07:00 by kpuwar           ###   ########.fr       */
+/*   Updated: 2024/04/08 01:13:54 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
 /**
- * @brief Outputs a number to the stdout.
+ * @brief Helper function to select the util function based on character and print the variable in the valist.
  *
- * @param n The number to output.
- * @return returns the number length after printing successfully on the stdout.
+ * @param c The character to replace with the value.
+ * @param valist The list of all the variables passed during function the call.
  */
-static int ft_putnbr(long int n)
-{
-	char arr[10] = {0};
-	short i = 0;
-	short len = 0;
-
-	if (n == 0)
-		return (ft_putchar('0'));
-
-	if (n < 0)
-	{
-		len += ft_putchar('-');
-		n *= -1;
-	}
-	while (n > 0)
-	{
-		arr[i++] = (n % 10) + '0';
-		n /= 10;
-	}
-	len += i;
-	while (i--)
-		ft_putchar(arr[i]);
-	return (len);
-}
-
-/**
- * @brief Outputs a hexadecimal value (both in uppercase and lowercase) to the stdout.
- *
- * @param n The number to output in hexadecimal.
- * @param c has to be either 'a' for lowercase hex val or 'A' for uppercase.
- * @return returns the hexadecimal's length after printing successfully on the stdout.
- */
-static int ft_tohex(unsigned long int n, char c)
-{
-	char arr[16] = {0};
-	short i = 0;
-	short temp;
-
-	if (n == 0)
-		return (ft_putchar('0'));
-
-	while (n)
-	{
-		temp = n % 16;
-		if (temp > 9)
-			arr[i++] = (temp - 10) + c;
-		else
-			arr[i++] = temp + '0';
-		n /= 16;
-	}
-	temp = i;
-	while (i--)
-		ft_putchar(arr[i]);
-	return (temp);
-}
-
 static int ft_print_var(char c, va_list valist)
 {
 	if (c == 'c')
