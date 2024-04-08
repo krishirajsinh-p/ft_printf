@@ -6,17 +6,33 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 14:12:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2024/04/08 01:13:54 by kpuwar           ###   ########.fr       */
+/*   Updated: 2024/04/08 12:54:06 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
 /**
- * @brief Helper function to select the util function based on character and print the variable in the valist.
+ * @brief Prints a variable argument according to the provided format specifier.
  *
- * @param c The character to replace with the value.
- * @param valist The list of all the variables passed during function the call.
+ * This function takes a format specifier `c` and a variable argument list `valist`
+ * and prints the corresponding value according to the specified format. The supported
+ * format specifiers are:
+ *
+ * - 'c': Print a character.
+ * - 's': Print a null-terminated string.
+ * - 'p': Print a pointer in hexadecimal format with '0x' prefix. Outputs "(nil)" if the pointer is NULL.
+ * - 'd' or 'i': Print a decimal integer.
+ * - 'u': Print an unsigned integer.
+ * - 'x': Print an unsigned integer in lowercase hexadecimal format.
+ * - 'X': Print an unsigned integer in uppercase hexadecimal format.
+ * - '%': Print a percent sign.
+ *
+ * @param c The format specifier indicating the type of variable argument to be printed.
+ * @param valist The variable argument list containing the value to be printed.
+ *
+ * @return Upon successful completion, the function returns the number of characters printed.
+ * If an output error is encountered, a negative value is returned.
  */
 static int ft_print_var(char c, va_list valist)
 {
@@ -43,7 +59,7 @@ static int ft_print_var(char c, va_list valist)
 	else if (c == '%')
 		return (ft_putchar('%')); // Print a percent sign
 	else
-		return (0); // Invalid format specifier, do nothing
+		return (-1); // Invalid format specifier, do nothing
 }
 
 int ft_printf(const char *args, ...)

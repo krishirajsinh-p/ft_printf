@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 14:17:06 by kpuwar            #+#    #+#             */
-/*   Updated: 2024/04/08 01:53:03 by kpuwar           ###   ########.fr       */
+/*   Updated: 2024/04/08 12:52:03 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,30 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
+/**
+ * @brief Prints formatted data to the standard output according to the format string.
+ *
+ * This function formats and prints data to the standard output according to the
+ * format string `args` and additional arguments. The format string may contain
+ * placeholders which are replaced by the values specified in subsequent arguments.
+ * The format specifiers follow the same syntax as those used in the standard `printf` function.
+ *
+ * @param args The format string specifying how subsequent arguments are formatted and printed.
+ * @param ... Additional arguments to be formatted and printed according to the format string.
+ *
+ * @return Upon successful completion, the function returns the number of characters printed
+ * (excluding the null byte used to end output to strings). If an output error is encountered,
+ * a negative value is returned. In case of an error, the global variable `errno` is set to
+ * indicate the cause of the error.
+ *
+ * @note This function is a custom implementation of the standard `printf` function.
+ * It supports a subset of format specifiers and options available in the standard `printf`.
+ * Refer to the documentation of the standard `printf` function for more information.
+ *
+ * @warning This function does not support all features of the standard `printf` function.
+ * It is recommended to review the supported format specifiers and options before use.
+ * Unsupported or incorrectly used specifiers may result in undefined behavior or errors.
+ */
 int ft_printf(const char *args, ...);
 
 /**
